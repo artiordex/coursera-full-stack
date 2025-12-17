@@ -1,0 +1,115 @@
+<section id="menu" class="py-5 bg-light">
+  <div class="container-fluid px-4 px-lg-5" style="max-width: 1280px; margin: 0 auto;">
+    
+    <!-- 섹션 타이틀 -->
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold text-dark mb-4">전체 메뉴</h2>
+      <p class="fs-5 text-secondary">신선한 재료로 만든 정통 중국 요리를 맛보세요</p>
+    </div>
+
+    <!-- 메뉴 슬라이더 -->
+    <div class="menu-container">
+      <div class="menu-slider" id="menu-slider">
+
+        <!-- 시그니처 요리 -->
+        <div class="menu-card">
+          <div class="card h-100 shadow">
+            <div class="position-relative">
+              <img src="https://readdy.ai/api/search-image?query=traditional%20Chinese%20signature%20dishes%20dongpo%20pork%20babocai%20yusan-seul%20yangjangpi%20elegant%20restaurant%20presentation%20deep%20wok%20flavor%20authentic%20cooking%20methods%20sophisticated%20presentation%20clean%20white%20background&width=600&height=400&seq=signature1&orientation=landscape"
+                   class="card-img-top" alt="시그니처 요리">
+              <span class="badge badge-primary position-absolute top-0 start-0 m-3 px-3 py-2 fs-6 rounded-pill">시그니처</span>
+            </div>
+            <div class="card-body p-4">
+              <h3 class="h3 fw-bold text-dark mb-3">시그니처 요리</h3>
+              <p class="text-secondary mb-4 fs-6">깊은 불향과 정통 조리법을 살린 대표 메뉴입니다</p>
+              <div id="signature-items"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 사천·채소 요리 -->
+        <div class="menu-card">
+          <div class="card h-100 shadow">
+            <div class="position-relative">
+              <img src="https://readdy.ai/api/search-image?query=Sichuan%20vegetable%20dishes%20spicy%20eggplant%20fish%20fragrant%20pork%20ground%20three%20fresh%20vegetables%20wok%20fried%20spicy%20mild%20balance%20elegant%20restaurant%20presentation%20clean%20white%20background&width=600&height=400&seq=sichuan-veg1&orientation=landscape"
+                   class="card-img-top" alt="사천·채소 요리">
+              <span class="badge badge-red position-absolute top-0 start-0 m-3 px-3 py-2 fs-6 rounded-pill">사천식</span>
+            </div>
+            <div class="card-body p-4">
+              <h3 class="h3 fw-bold text-dark mb-3">사천·채소 요리</h3>
+              <p class="text-secondary mb-4 fs-6">매콤함과 담백함의 조화를 살린 요리로, 부담 없이 즐길 수 있습니다</p>
+              <div id="sichuan-items"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 튀김·해산물 요리 -->
+        <div class="menu-card">
+          <div class="card h-100 shadow">
+            <div class="position-relative">
+              <img src="https://readdy.ai/api/search-image?query=Chinese%20fried%20dishes%20and%20seafood%20ganpunggi%20yuringi%20lajogi%20guobarou%20Sichuan%20tangsuyuk%20shrimp%20dishes%20crispy%20golden%20appetizer%20with%20beer%20elegant%20restaurant%20presentation%20clean%20white%20background&width=600&height=400&seq=fried-seafood1&orientation=landscape"
+                   class="card-img-top" alt="튀김·해산물 요리">
+              <span class="badge badge-orange position-absolute top-0 start-0 m-3 px-3 py-2 fs-6 rounded-pill">술안주</span>
+            </div>
+            <div class="card-body p-4">
+              <h3 class="h3 fw-bold text-dark mb-3">튀김·해산물 요리</h3>
+              <p class="text-secondary mb-4 fs-6">술안주로도 인기가 높은 바삭하고 맛있는 튀김과 신선한 해산물 요리</p>
+              <div id="fried-items"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 식사·면류 -->
+        <div class="menu-card">
+          <div class="card h-100 shadow">
+            <div class="position-relative">
+              <img src="https://readdy.ai/api/search-image?query=Chinese%20noodles%20and%20rice%20dishes%20jajangmyeon%20jjamppong%20beef%20noodle%20soup%20yusan-seul%20rice%20gochu%20japchae%20rice%20lunch%20dinner%20meal%20elegant%20restaurant%20presentation%20clean%20white%20background&width=600&height=400&seq=meal1&orientation=landscape"
+                   class="card-img-top" alt="식사·면류">
+              <span class="badge badge-blue position-absolute top-0 start-0 m-3 px-3 py-2 fs-6 rounded-pill">식사</span>
+            </div>
+            <div class="card-body p-4">
+              <h3 class="h3 fw-bold text-dark mb-3">식사·면류</h3>
+              <p class="text-secondary mb-4 fs-6">점심과 저녁 모두에 적합한 든든한 한 끼 메뉴입니다</p>
+              <div id="meal-items"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 음료·주류 -->
+        <div class="menu-card">
+          <div class="card h-100 shadow">
+            <div class="position-relative">
+              <img src="https://readdy.ai/api/search-image?query=Chinese%20beer%20and%20alcohol%20Tsingtao%20beer%20Cass%20Terra%20draft%20beer%20traditional%20Chinese%20liquor%20gaoliangju%20yiguo%20erguotou%20elegant%20restaurant%20table%20setting%20sophisticated%20presentation%20clean%20white%20background&width=600&height=400&seq=drinks1&orientation=landscape"
+                   class="card-img-top" alt="음료·주류">
+              <span class="badge badge-amber position-absolute top-0 start-0 m-3 px-3 py-2 fs-6 rounded-pill">음료</span>
+            </div>
+            <div class="card-body p-4">
+              <h3 class="h3 fw-bold text-dark mb-3">음료·주류</h3>
+              <p class="text-secondary mb-4 fs-6">생맥주와 중국 전통 술로 요리의 풍미를 한층 끌어올립니다</p>
+              <div id="drink-items"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 네비게이션 -->
+    <div class="d-flex justify-content-center align-items-center gap-4 mt-5">
+      <button class="nav-btn" id="prev-menu">
+        <i class="ri-arrow-left-line"></i>
+      </button>
+      <div class="d-flex gap-2">
+        <div class="menu-dot active" data-slide="0"></div>
+        <div class="menu-dot" data-slide="1"></div>
+        <div class="menu-dot" data-slide="2"></div>
+        <div class="menu-dot" data-slide="3"></div>
+        <div class="menu-dot" data-slide="4"></div>
+      </div>
+      <button class="nav-btn" id="next-menu">
+        <i class="ri-arrow-right-line"></i>
+      </button>
+    </div>
+
+  </div>
+</section>

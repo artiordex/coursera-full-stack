@@ -1,0 +1,89 @@
+<section id="section" class="py-5 bg-white">
+  <div class="container">
+
+    <!-- Section Title -->
+    <div class="text-center mb-5">
+      <h2 class="display-5 fw-bold mb-3">주요 메뉴</h2>
+      <p class="fs-5 text-secondary mx-auto" style="max-width: 900px;">
+        정통 중국 요리부터 특별한 스페셜 메뉴까지,<br class="d-none d-md-block">
+        SW's China Foods의 다양한 맛을 경험해보세요.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="row g-4">
+
+      <!-- Menu -->
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm menu-card" 
+             style="cursor: pointer;"
+             onclick="document.getElementById('menu').scrollIntoView({ behavior: 'smooth' })">
+          <div class="img-square">
+            <img src="assets/images/section_1.png" alt="전체 요리">
+            <span class="badge bg-primary position-absolute bottom-0 start-0 m-3 px-3 py-2 fs-6">
+              인기
+            </span>
+          </div>
+          <div class="card-body p-4">
+            <h3 class="h4 fw-bold mb-3">전체 메뉴</h3>
+            <p class="text-secondary mb-4">
+              정통 중국 요리의 진수를 담은 다양한 메뉴를 만나보세요.
+            </p>
+            <span class="fw-semibold text-primary">
+              메뉴 보기 →
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specials -->
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm menu-card" 
+             style="cursor: pointer;"
+             onclick="document.getElementById('specials').scrollIntoView({ behavior: 'smooth' })">
+          <div class="img-square">
+            <img src="assets/images/section_2.png" alt="스페셜 메뉴">
+            <span class="badge bg-warning text-dark position-absolute bottom-0 start-0 m-3 px-3 py-2 fs-6">
+              특별
+            </span>
+          </div>
+          <div class="card-body p-4">
+            <h3 class="h4 fw-bold mb-3">스페셜</h3>
+            <p class="text-secondary mb-4">
+              셰프가 직접 선별한 프리미엄 요리를 경험해보세요.
+            </p>
+            <span class="fw-semibold text-warning">
+              스페셜 보기 →
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm menu-card" 
+             style="cursor: pointer;"
+             onclick="document.getElementById('location').scrollIntoView({ behavior: 'smooth' })">
+          <div class="img-square">
+            <img
+              src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png"
+              alt="매장 위치"
+            >
+            <span class="badge bg-success position-absolute bottom-0 start-0 m-3 px-3 py-2 fs-6">
+              영업중
+            </span>
+          </div>
+          <div class="card-body p-4">
+            <h3 class="h4 fw-bold mb-3">매장정보</h3>
+            <p class="text-secondary mb-4">
+              판교에 위치한 매장에서 직접 경험하거나 배달로 즐기세요.
+            </p>
+            <span class="fw-semibold text-success">
+              매장정보 →
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,185 @@
+{
+  "signature": [
+    {
+      "name": "동파육",
+      "description": "부드럽게 조린 전통 중국식 돼지고기 요리",
+      "price": 32000,
+      "category": "시그니처"
+    },
+    {
+      "name": "팔보채",
+      "description": "8가지 재료로 볶아낸 고급 야채 요리",
+      "price": 22000,
+      "category": "시그니처"
+    },
+    {
+      "name": "유산슬",
+      "description": "부드러운 고기와 해산물, 채소의 조화",
+      "price": 24000,
+      "category": "시그니처"
+    },
+    {
+      "name": "양장피",
+      "description": "쫄깃한 재료와 상큼한 소스의 냉채 요리",
+      "price": 25000,
+      "category": "시그니처"
+    },
+    {
+      "name": "경장육사",
+      "description": "채썬 돼지고기를 볶아낸 담백한 요리",
+      "price": 26000,
+      "category": "시그니처"
+    },
+    {
+      "name": "홍소육",
+      "description": "진한 간장 소스로 졸인 중국식 조림",
+      "price": 28000,
+      "category": "시그니처"
+    },
+    {
+      "name": "마파두부 (사천식)",
+      "description": "화자오 향이 살아있는 고급 사천식 두부 요리",
+      "price": 20000,
+      "category": "시그니처"
+    }
+  ],
+
+  "general": {
+    "vegetable_sichuan": [
+      {
+        "name": "어향육슬",
+        "description": "어향 소스로 볶아낸 돼지고기 요리",
+        "price": 26000
+      },
+      {
+        "name": "어향가지 (저유)",
+        "description": "기름을 줄여 담백하게 조리한 가지 요리",
+        "price": 18000
+      },
+      {
+        "name": "지삼선",
+        "description": "가지, 감자, 피망을 볶아낸 전통 요리",
+        "price": 20000
+      }
+    ],
+
+    "fried_seafood": [
+      {
+        "name": "깐풍기",
+        "description": "매콤달콤한 중국식 닭튀김",
+        "price": 26000
+      },
+      {
+        "name": "유린기",
+        "description": "상큼한 소스를 곁들인 닭요리",
+        "price": 28000
+      },
+      {
+        "name": "라조기",
+        "description": "고추와 함께 볶은 매운 닭요리",
+        "price": 24000
+      },
+      {
+        "name": "꿔바로우",
+        "description": "동북식 바삭한 돼지고기 튀김",
+        "price": 30000
+      },
+      {
+        "name": "사천탕수육",
+        "description": "사천식 매콤달콤 탕수육",
+        "price": 32000
+      },
+      {
+        "name": "깐쇼새우",
+        "description": "중국식 매콤 새우 요리",
+        "price": 35000
+      },
+      {
+        "name": "칠리새우",
+        "description": "칠리 소스로 볶은 새우",
+        "price": 33000
+      },
+      {
+        "name": "크림새우",
+        "description": "부드러운 크림 소스 새우",
+        "price": 36000
+      },
+      {
+        "name": "마늘소스 새우",
+        "description": "마늘 풍미가 진한 새우 요리",
+        "price": 32000
+      }
+    ],
+
+    "meals_noodles": [
+      {
+        "name": "간짜장",
+        "description": "면과 소스를 따로 제공하는 짜장면",
+        "price": 8000
+      },
+      {
+        "name": "삼선짜장",
+        "description": "해물이 들어간 고급 짜장",
+        "price": 12000
+      },
+      {
+        "name": "삼선짬뽕",
+        "description": "해물과 고기가 풍부한 짬뽕",
+        "price": 13000
+      },
+      {
+        "name": "굴짬뽕",
+        "description": "신선한 굴이 들어간 시원한 짬뽕",
+        "price": 14000
+      },
+      {
+        "name": "우육면",
+        "description": "고급 사천식 소고기 국수",
+        "price": 16000
+      },
+      {
+        "name": "유산슬밥",
+        "description": "유산슬을 얹은 덮밥",
+        "price": 15000
+      },
+      {
+        "name": "고추잡채밥",
+        "description": "매콤한 고추잡채 덮밥",
+        "price": 14000
+      }
+    ],
+
+    "drinks": [
+      {
+        "name": "칭다오 맥주",
+        "description": "중국 대표 맥주",
+        "price": 5000
+      },
+      {
+        "name": "카스 생맥주",
+        "description": "국산 생맥주",
+        "price": 4000
+      },
+      {
+        "name": "테라 생맥주",
+        "description": "프리미엄 생맥주",
+        "price": 4500
+      },
+      {
+        "name": "고량주",
+        "description": "중국 전통 증류주",
+        "price": 25000
+      },
+      {
+        "name": "이과두주",
+        "description": "부드러운 중국 백주",
+        "price": 28000
+      },
+      {
+        "name": "연태고량주",
+        "description": "고급 중국 전통주",
+        "price": 35000
+      }
+    ]
+  }
+}

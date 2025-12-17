@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#8B0000',
+secondary: '#D4AF37'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+.hero-bg {
+background-image: url('https://readdy.ai/api/search-image?query=traditional%20Chinese%20restaurant%20interior%20with%20warm%20red%20and%20gold%20decorations%20lanterns%20wooden%20tables%20elegant%20dining%20atmosphere%20cozy%20authentic%20Chinese%20restaurant%20ambiance%20with%20traditional%20elements%20dim%20sum%20steamers%20chopsticks%20oriental%20design%20warm%20lighting%20sophisticated%20elegant%20modern%20minimalist%20clean%20bright%20background%20perfect%20contrast%20text%20readability%20high%20quality%20photography&width=1200&height=600&seq=hero2&orientation=landscape');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+.overlay-gradient {
+background: linear-gradient(135deg, rgba(139, 0, 0, 0.85) 0%, rgba(139, 0, 0, 0.6) 100%);
+}
+.modal {
+display: none;
+position: fixed;
+z-index: 9999;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgba(0, 0, 0, 0.7);
+}
+.modal.active {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.modal-content {
+background-color: white;
+margin: auto;
+padding: 0;
+border-radius: 24px;
+max-width: 800px;
+width: 90%;
+max-height: 90vh;
+overflow-y: auto;
+}
+.menu-slider {
+display: flex;
+transition: transform 0.3s ease;
+}
+.menu-card {
+min-width: 90%;
+max-width: 90%;
+}
+@media (min-width: 768px) {
+.menu-card {
+min-width: 45%;
+max-width: 45%;
+}
+}
+@media (min-width: 1024px) {
+.menu-card {
+min-width: 30%;
+max-width: 30%;
+}
+}
+.menu-container {
+overflow: hidden;
+position: relative;
+}
+</style>
+</head>
+
+<section id="specials" class="py-32 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-20">
+<h2 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-8">스페셜 메뉴</h2>
+<p class="text-2xl text-gray-600">셰프 특선 요리와 시즌 한정 메뉴</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+<div>
+<img src="https://readdy.ai/api/search-image?query=premium%20Chinese%20special%20dishes%20chef%20signature%20menu%20exquisite%20plating%20fine%20dining%20Chinese%20cuisine%20photography%20elegant%20presentation%20luxurious%20high%20end%20restaurant%20quality%20sophisticated%20modern%20clean%20background%20beautiful%20food%20styling%20professional%20photography&width=800&height=600&seq=special4&orientation=landscape"
+alt="스페셜 요리" class="w-full h-[32rem] object-cover object-top rounded-3xl shadow-2xl">
+</div>
+<div class="space-y-8">
+<div class="inline-block bg-secondary/10 text-secondary px-6 py-3 rounded-full text-lg font-semibold">
+Chef's Special
+</div>
+<h3 class="text-5xl font-bold text-gray-900">셰프 특선 요리</h3>
+<p class="text-xl text-gray-600 leading-relaxed">
+15년 경력의 중국 요리 전문 셰프가 직접 선별한 프리미엄 메뉴입니다.
+전통 레시피에 현대적 감각을 더해 특별한 맛의 경험을 선사합니다.
+</p>
+</div>
+</div>
+<div class="relative overflow-hidden mb-16">
+<div class="flex transition-transform duration-300 ease-in-out" id="specials-carousel">
+<div class="min-w-0 flex-shrink-0 w-full grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden cursor-pointer special-item" data-name="마라훠궈샹궈" data-price="58000" data-image="https://readdy.ai/api/search-image?query=spicy%20Sichuan%20malatang%20xianguo%20with%20red%20broth%20without%20soup%20dry%20style%20stir%20fried%20with%20vegetables%20meat%20seafood%20mala%20spices%20traditional%20Chinese%20hotpot%20dry%20version%20colorful%20ingredients%20elegant%20restaurant%20presentation%20clean%20background%20sophisticated%20food%20styling%20professional%20photography%20high%20quality&width=800&height=600&seq=mala1&orientation=landscape" data-description="훠궈와 마라샹궈의 장점을 결합한 메뉴입니다. 각종 재료를 훠궈 스타일로 선택한 뒤, 국물 없이 마라 소스로 강하게 볶아내 깊은 풍미를 냅니다. 마라 마니아들에게 특히 사랑받는 SW's China Foods 추천 메뉴입니다.">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=spicy%20Sichuan%20malatang%20xianguo%20with%20red%20broth%20without%20soup%20dry%20style%20stir%20fried%20with%20vegetables%20meat%20seafood%20mala%20spices%20traditional%20Chinese%20hotpot%20dry%20version%20colorful%20ingredients%20elegant%20restaurant%20presentation%20clean%20background%20sophisticated%20food%20styling%20professional%20photography%20high%20quality&width=600&height=400&seq=mala1&orientation=landscape"
+alt="마라훠궈샹궈" class="w-full h-64 object-cover object-top">
+<div class="absolute top-6 left-6">
+<span class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold">매운맛</span>
+</div>
+</div>
+<div class="p-6">
+<h4 class="text-2xl font-bold text-gray-900 mb-3">마라훠궈샹궈 (麻辣火锅香锅)</h4>
+<p class="text-gray-600 mb-4 text-sm leading-relaxed">훠궈와 마라샹궈의 장점을 결합한 메뉴입니다. 각종 재료를 훠궈 스타일로 선택한 뒤, 국물 없이 마라 소스로 강하게 볶아내 깊은 풍미를 냅니다. 마라 마니아들에게 특히 사랑받는 SW's China Foods 추천 메뉴입니다.</p>
+<div class="flex justify-between items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer menu-item" data-name="마라훠궈샹궈" data-price="58000">
+<span class="text-xl font-bold text-primary">₩58,000</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden cursor-pointer special-item" data-name="북경오리" data-price="89000" data-image="https://readdy.ai/api/search-image?query=Peking%20duck%20roasted%20crispy%20skin%20sliced%20presentation%20traditional%20Chinese%20cuisine%20elegant%20plating%20fine%20dining%20restaurant%20quality%20professional%20photography%20clean%20background%20sophisticated%20food%20styling%20luxurious%20presentation%20high%20resolution&width=800&height=600&seq=peking2&orientation=landscape" data-description="겉은 바삭하고 속은 촉촉하게 구워낸 정통 북경오리 요리입니다. 얇은 전병에 오이, 파, 특제 소스를 곁들여 싸 먹는 방식으로, 고급 중식의 상징입니다.">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=Peking%20duck%20roasted%20crispy%20skin%20sliced%20presentation%20traditional%20Chinese%20cuisine%20elegant%20plating%20fine%20dining%20restaurant%20quality%20professional%20photography%20clean%20background%20sophisticated%20food%20styling%20luxurious%20presentation%20high%20resolution&width=600&height=400&seq=peking1&orientation=landscape"
+alt="북경오리" class="w-full h-64 object-cover object-top">
+<div class="absolute top-6 left-6">
+<span class="bg-secondary text-white px-4 py-2 rounded-full text-sm font-semibold">고급</span>
+</div>
+</div>
+<div class="p-6">
+<h4 class="text-2xl font-bold text-gray-900 mb-3">북경오리 (北京烤鸭)</h4>
+<p class="text-gray-600 mb-4 text-sm leading-relaxed">겉은 바삭하고 속은 촉촉하게 구워낸 정통 북경오리 요리입니다. 얇은 전병에 오이, 파, 특제 소스를 곁들여 싸 먹는 방식으로, 고급 중식의 상징 같은 메뉴입니다. 특별한 날이나 접대용으로 인기가 높습니다.</p>
+<div class="flex justify-between items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer menu-item" data-name="북경오리 코스" data-price="89000">
+<span class="text-xl font-bold text-primary">₩89,000</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden cursor-pointer special-item" data-name="사천양갈비" data-price="45000" data-image="https://readdy.ai/api/search-image?query=Sichuan%20lamb%20ribs%20spicy%20stir%20fried%20with%20peppers%20and%20spices%20Chinese%20cuisine%20wok%20cooking%20traditional%20restaurant%20quality%20elegant%20presentation%20clean%20background%20sophisticated%20food%20styling%20professional%20photography%20high%20resolution&width=800&height=600&seq=lamb2&orientation=landscape" data-description="강한 화력의 웍에서 볶아낸 사천식 양갈비 요리입니다. 화자오와 고추가 어우러진 얼얼하고 매콤한 양념이 양고기의 풍미를 극대화합니다.">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=Sichuan%20lamb%20ribs%20spicy%20stir%20fried%20with%20peppers%20and%20spices%20Chinese%20cuisine%20wok%20cooking%20traditional%20restaurant%20quality%20elegant%20presentation%20clean%20background%20sophisticated%20food%20styling%20professional%20photography%20high%20resolution&width=600&height=400&seq=lamb1&orientation=landscape"
+alt="사천양갈비" class="w-full h-64 object-cover object-top">
+<div class="absolute top-6 left-6">
+<span class="bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold">사천식</span>
+</div>
+</div>
+<div class="p-6">
+<h4 class="text-2xl font-bold text-gray-900 mb-3">사천양갈비 (四川羊排)</h4>
+<p class="text-gray-600 mb-4 text-sm leading-relaxed">강한 화력의 웍에서 볶아낸 사천식 양갈비 요리입니다. 화자오와 고추가 어우러진 얼얼하고 매콤한 양념이 양고기의 풍미를 극대화합니다. 대림동 사천요리집에서 빠지지 않는 시그니처 메뉴입니다.</p>
+<div class="flex justify-between items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer menu-item" data-name="사천양갈비" data-price="45000">
+<span class="text-xl font-bold text-primary">₩45,000</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden cursor-pointer special-item" data-name="수주위" data-price="38000" data-image="https://readdy.ai/api/search-image?query=Chinese%20fish%20in%20spicy%20Sichuan%20broth%20water%20boiled%20fish%20tender%20white%20fish%20fillets%20red%20chili%20oil%20fragrant%20spices%20traditional%20Chinese%20cuisine%20restaurant%20quality%20elegant%20presentation%20clean%20background%20sophisticated%20food%20styling&width=800&height=600&seq=fish2&orientation=landscape" data-description="부드러운 생선살을 매콤한 사천식 국물에 끓여낸 정통 물고기 요리입니다. 고추기름과 화자오 향이 강렬하면서도 생선의 담백함을 살린 대표 메뉴입니다.">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=Chinese%20fish%20in%20spicy%20Sichuan%20broth%20water%20boiled%20fish%20tender%20white%20fish%20fillets%20red%20chili%20oil%20fragrant%20spices%20traditional%20Chinese%20cuisine%20restaurant%20quality%20elegant%20presentation%20clean%20background%20sophisticated%20food%20styling&width=600&height=400&seq=fish1&orientation=landscape"
+alt="수주위" class="w-full h-64 object-cover object-top">
+<div class="absolute top-6 left-6">
+<span class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">신선함</span>
+</div>
+</div>
+<div class="p-6">
+<h4 class="text-2xl font-bold text-gray-900 mb-3">수주위 (水煮鱼)</h4>
+<p class="text-gray-600 mb-4 text-sm leading-relaxed">부드러운 생선살을 매콤한 사천식 국물에 끓여낸 정통 물고기 요리입니다. 고추기름과 화자오 향이 강렬하면서도 생선의 담백함을 살린 대표 메뉴입니다.</p>
+<div class="flex justify-between items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer menu-item" data-name="수주위" data-price="38000">
+<span class="text-xl font-bold text-primary">₩38,000</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden cursor-pointer special-item" data-name="황제 딤섬 세트" data-price="68000" data-image="https://readdy.ai/api/search-image?query=premium%20Chinese%20dim%20sum%20selection%20xiaolongbao%20steamed%20dumplings%20har%20gow%20shumai%20elegant%20bamboo%20steamers%20traditional%20Chinese%20cuisine%20fine%20dining%20restaurant%20quality%20sophisticated%20presentation%20clean%20background%20professional%20photography&width=800&height=600&seq=dimsum2&orientation=landscape" data-description="최고급 재료로 만든 8종 딤섬 세트입니다. 샤오롱바오, 하가오, 슈마이 등 정통 광동식 딤섬의 정수를 담아 황제의 식탁처럼 고급스럽게 제공합니다.">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=premium%20Chinese%20dim%20sum%20selection%20xiaolongbao%20steamed%20dumplings%20har%20gow%20shumai%20elegant%20bamboo%20steamers%20traditional%20Chinese%20cuisine%20fine%20dining%20restaurant%20quality%20sophisticated%20presentation%20clean%20background%20professional%20photography&width=600&height=400&seq=dimsum1&orientation=landscape"
+alt="황제 딤섬" class="w-full h-64 object-cover object-top">
+<div class="absolute top-6 left-6">
+<span class="bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold">프리미엄</span>
+</div>
+</div>
+<div class="p-6">
+<h4 class="text-2xl font-bold text-gray-900 mb-3">황제 딤섬 세트</h4>
+<p class="text-gray-600 mb-4 text-sm leading-relaxed">최고급 재료로 만한 8종 딤섬 세트입니다. 샤오롱바오, 하가오, 슈마이 등 정통 광동식 딤섬의 정수를 담아 황제의 식탁처럼 고급스럽게 제공합니다.</p>
+<div class="flex justify-between items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer menu-item" data-name="황제 딤섬 세트" data-price="68000">
+<span class="text-xl font-bold text-primary">₩68,000</span>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-0 flex-shrink-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 lg:justify-center">
+<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden cursor-pointer special-item" data-name="수주위" data-price="38000" data-image="https://readdy.ai/api/search-image?query=Chinese%20fish%20in%20spicy%20Sichuan%20broth%20water%20boiled%20fish%20tender%20white%20fish%20fillets%20red%20chili%20oil%20fragrant%20spices%20traditional%20Chinese%20cuisine%20restaurant%20quality%20elegant%20presentation%20clean%20background%20sophisticated%20food%20styling&width=800&height=600&seq=fish2&orientation=landscape" data-description="부드러운 생선살을 매콤한 사천식 국물에 끓여낸 정통 물고기 요리입니다. 고추기름과 화자오 향이 강렬하면서도 생선의 담백함을 살린 대표 메뉴입니다.">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=Chinese%20fish%20in%20spicy%20Sichuan%20broth%20water%20boiled%20fish%20tender%20white%20fish%20fillets%20red%20chili%20oil%20fragrant%20spices%20traditional%20Chinese%20cuisine%20restaurant%20quality%20elegant%20presentation%20clean%20background%20sophisticated%20food%20styling&width=600&height=400&seq=fish1&orientation=landscape"
+alt="수주위" class="w-full h-64 object-cover object-top">
+<div class="absolute top-6 left-6">
+<span class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">신선함</span>
+</div>
+</div>
+<div class="p-6">
+<h4 class="text-2xl font-bold text-gray-900 mb-3">수주위 (水煮鱼)</h4>
+<p class="text-gray-600 mb-4 text-sm leading-relaxed">부드러운 생선살을 매콤한 사천식 국물에 끓여낸 정통 물고기 요리입니다. 고추기름과 화자오 향이 강렬하면서도 생선의 담백함을 살린 대표 메뉴입니다.</p>
+<div class="flex justify-between items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer menu-item" data-name="수주위" data-price="38000">
+<span class="text-xl font-bold text-primary">₩38,000</span>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden cursor-pointer special-item" data-name="황제 딤섬 세트" data-price="68000" data-image="https://readdy.ai/api/search-image?query=premium%20Chinese%20dim%20sum%20selection%20xiaolongbao%20steamed%20dumplings%20har%20gow%20shumai%20elegant%20bamboo%20steamers%20traditional%20Chinese%20cuisine%20fine%20dining%20restaurant%20quality%20sophisticated%20presentation%20clean%20background%20professional%20photography&width=800&height=600&seq=dimsum2&orientation=landscape" data-description="최고급 재료로 만든 8종 딤섬 세트입니다. 샤오롱바오, 하가오, 슈마이 등 정통 광동식 딤섬의 정수를 담아 황제의 식탁처럼 고급스럽게 제공합니다.">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=premium%20Chinese%20dim%20sum%20selection%20xiaolongbao%20steamed%20dumplings%20har%20gow%20shumai%20elegant%20bamboo%20steamers%20traditional%20Chinese%20cuisine%20fine%20dining%20restaurant%20quality%20sophisticated%20presentation%20clean%20background%20professional%20photography&width=600&height=400&seq=dimsum1&orientation=landscape"
+alt="황제 딤섬" class="w-full h-64 object-cover object-top">
+<div class="absolute top-6 left-6">
+<span class="bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold">프리미엄</span>
+</div>
+</div>
+<div class="p-6">
+<h4 class="text-2xl font-bold text-gray-900 mb-3">황제 딤섬 세트</h4>
+<p class="text-gray-600 mb-4 text-sm leading-relaxed">최고급 재료로 만든 8종 딤섬 세트입니다. 샤오롱바오, 하가오, 슈마이 등 정통 광동식 딤섬의 정수를 담아 황제의 식탁처럼 고급스럽게 제공합니다.</p>
+<div class="flex justify-between items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer menu-item" data-name="황제 딤섬 세트" data-price="68000">
+<span class="text-xl font-bold text-primary">₩68,000</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center items-center space-x-6 mt-12">
+<button class="w-12 h-12 flex items-center justify-center bg-gray-200 hover:bg-primary hover:text-white rounded-full transition-colors cursor-pointer" id="prev-special">
+<i class="ri-arrow-left-line text-xl"></i>
+</button>
+<div class="flex space-x-3">
+<div class="w-3 h-3 bg-primary rounded-full cursor-pointer carousel-dot active" data-slide="0"></div>
+<div class="w-3 h-3 bg-gray-300 rounded-full cursor-pointer carousel-dot" data-slide="1"></div>
+</div>
+<button class="w-12 h-12 flex items-center justify-center bg-gray-200 hover:bg-primary hover:text-white rounded-full transition-colors cursor-pointer" id="next-special">
+<i class="ri-arrow-right-line text-xl"></i>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="bg-gradient-to-br from-primary to-red-700 rounded-3xl p-8 text-white">
+<div class="w-16 h-16 flex items-center justify-center bg-white/20 rounded-2xl mb-6">
+<i class="ri-fire-line text-3xl"></i>
+</div>
+<h4 class="text-2xl font-bold mb-3">매운맛 특선</h4>
+<p class="text-white/80 text-lg">사천식 매운 요리 전문</p>
+</div>
+<div class="bg-gradient-to-br from-secondary to-yellow-600 rounded-3xl p-8 text-white">
+<div class="w-16 h-16 flex items-center justify-center bg-white/20 rounded-2xl mb-6">
+<i class="ri-leaf-line text-3xl"></i>
+</div>
+<h4 class="text-2xl font-bold mb-3">건강식 메뉴</h4>
+<p class="text-white/80 text-lg">신선한 야채 중심 요리</p>
+</div>
+<div class="bg-gradient-to-br from-green-600 to-green-700 rounded-3xl p-8 text-white">
+<div class="w-16 h-16 flex items-center justify-center bg-white/20 rounded-2xl mb-6">
+<i class="ri-time-line text-3xl"></i>
+</div>
+<h4 class="text-2xl font-bold mb-3">시간 제한</h4>
+<p class="text-white/80 text-lg">특별한 시간에만 제공</p>
+</div>
+<div class="bg-gradient-to-br from-purple-600 to-purple-700 rounded-3xl p-8 text-white">
+<div class="w-16 h-16 flex items-center justify-center bg-white/20 rounded-2xl mb-6">
+<i class="ri-vip-crown-line text-3xl"></i>
+</div>
+<h4 class="text-2xl font-bold mb-3">VIP 전용</h4>
+<p class="text-white/80 text-lg">프리미엄 멤버십 혜택</p>
+</div>
+</div>
+</div>
+</section>
+<section id="location" class="py-32 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-20 items-start">
+<div class="lg:col-span-3 space-y-16">
+<div class="space-y-8">
+<div class="flex items-center space-x-4">
+<span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-50 text-green-700 border border-green-200">
+<div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+영업중
+</span>
+<span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-50 text-blue-700 border border-blue-200">
+<i class="ri-truck-line text-blue-600 mr-2"></i>
+배달 가능
+</span>
+</div>
+<div class="space-y-3">
+<h2 class="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight">SW's China Foods</h2>
+<p class="text-xl text-gray-500 font-light">판교 중국요리 전문점</p>
+</div>
+</div>
+<div class="space-y-10">
+<div class="border-l-4 border-gray-200 pl-8 space-y-3">
+<div class="flex items-center space-x-4">
+<i class="ri-map-pin-2-line text-gray-400 text-2xl"></i>
+<h3 class="text-lg font-semibold text-gray-900">위치</h3>
+</div>
+<div class="space-y-1 text-gray-700">
+<p class="text-lg">경기도 성남시 분당구 판교역로 166</p>
+<p class="text-base text-gray-500">알파돔시티 2층</p>
+</div>
+</div>
+<div class="border-l-4 border-gray-200 pl-8 space-y-3">
+<div class="flex items-center space-x-4">
+<i class="ri-phone-line text-gray-400 text-2xl"></i>
+<h3 class="text-lg font-semibold text-gray-900">연락처</h3>
+</div>
+<div class="space-y-1">
+<p class="text-lg text-gray-700">02-1234-5678</p>
+<p class="text-base text-gray-500">010-1234-5678</p>
+</div>
+</div>
+<div class="border-l-4 border-gray-200 pl-8 space-y-4">
+<div class="flex items-center space-x-4">
+<i class="ri-time-line text-gray-400 text-2xl"></i>
+<h3 class="text-lg font-semibold text-gray-900">영업시간</h3>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between py-2">
+<span class="text-base text-gray-700 font-medium">월요일 – 목요일</span>
+<span class="text-base text-gray-600">11:30 – 22:00</span>
+</div>
+<div class="flex items-center justify-between py-2">
+<span class="text-base text-gray-700 font-medium">금요일</span>
+<span class="text-base text-gray-600">11:30 – 14:30</span>
+</div>
+<div class="flex items-center justify-between py-2">
+<span class="text-base text-gray-700 font-medium">토요일</span>
+<span class="text-base text-red-500 font-medium">휴무</span>
+</div>
+<div class="flex items-center justify-between py-2">
+<span class="text-base text-gray-700 font-medium">일요일</span>
+<span class="text-base text-gray-600">16:00 – 22:00</span>
+</div>
+</div>
+</div>
+<div class="border-l-4 border-gray-200 pl-8 space-y-4">
+<div class="flex items-center space-x-4">
+<i class="ri-e-bike-2-line text-gray-400 text-2xl"></i>
+<h3 class="text-lg font-semibold text-gray-900">배달 서비스</h3>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<div class="flex items-center justify-between py-2">
+<span class="text-base text-gray-600">배달 가능 거리</span>
+<span class="text-base text-gray-800 font-medium">3km 이내</span>
+</div>
+<div class="flex items-center justify-between py-2">
+<span class="text-base text-gray-600">최소 주문 금액</span>
+<span class="text-base text-gray-800 font-medium">15,000원</span>
+</div>
+<div class="flex items-center justify-between py-2">
+<span class="text-base text-gray-600">배달비</span>
+<span class="text-base text-gray-800 font-medium">2,500원</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-12 border-t border-gray-200">
+<button class="bg-primary hover:bg-red-800 text-white px-12 py-4 !rounded-button text-lg font-semibold transition-all transform hover:scale-105 whitespace-nowrap cursor-pointer" id="location-reserve-btn">
+예약하기
+</button>
+</div>
+</div>
+<div class="lg:col-span-2">
+<div class="sticky top-8">
+<div class="relative bg-gray-50 rounded-2xl overflow-hidden shadow-sm">
+<div class="w-full h-[500px]" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="bg-white/95 backdrop-blur-sm rounded-lg px-6 py-4 shadow-lg border border-white/20">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-semibold text-gray-900 text-base">SW's China Foods</h4>
+<p class="text-gray-600 text-sm">알파돔시티 2층</p>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-3 h-3 bg-green-500 rounded-full"></div>
+<button class="text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors cursor-pointer">
+길찾기
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 bg-white border-t border-gray-100">
+<div class="space-y-3">
+<p class="text-sm text-gray-600">
+판교역 도보 5분 거리에 위치한 프리미엄 중국요리 전문점입니다.
+</p>
+<div class="flex items-center space-x-2 text-sm text-gray-500">
+<i class="ri-car-line"></i>
+<span>주차 가능</span>
+<span class="text-gray-300">|</span>
+<i class="ri-wifi-line"></i>
+<span>WiFi 제공</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div id="dish-modal" class="modal">
+<div class="modal-content">
+<div class="relative">
+<button class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center bg-white/90 rounded-full hover:bg-white transition-colors z-10 cursor-pointer" id="close-modal">
+<i class="ri-close-line text-2xl text-gray-700"></i>
+</button>
+<div class="relative h-96 overflow-hidden rounded-t-3xl">
+<img id="modal-image" src="" alt="" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8 text-white">
+<h3 id="modal-title" class="text-4xl font-bold mb-4"></h3>
+<p id="modal-price" class="text-2xl font-semibold text-secondary"></p>
+</div>
+</div>
+<div class="p-12">
+<div class="space-y-8">
+<div>
+<h4 class="text-2xl font-bold text-gray-900 mb-4">요리 소개</h4>
+<p id="modal-description" class="text-lg text-gray-600 leading-relaxed"></p>
+</div>
+<div class="flex flex-col sm:flex-row gap-6">
+<button id="modal-reserve" class="bg-primary hover:bg-red-800 text-white px-8 py-4 !rounded-button text-lg font-semibold transition-all transform hover:scale-105 cursor-pointer whitespace-nowrap">
+예약하기
+</button>
+<button class="border-2 border-gray-300 text-gray-700 hover:border-primary hover:text-primary px-8 py-4 !rounded-button text-lg font-semibold transition-all cursor-pointer whitespace-nowrap">
+더 많은 정보
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuBtn.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+});
+</script>
+<script id="navigation-script">
+document.addEventListener('DOMContentLoaded', function() {
+const menuCard = document.getElementById('menu-card');
+const specialsCard = document.getElementById('specials-card');
+const mapCard = document.getElementById('map-card');
+menuCard.addEventListener('click', function() {
+document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+});
+specialsCard.addEventListener('click', function() {
+document.getElementById('specials').scrollIntoView({ behavior: 'smooth' });
+});
+mapCard.addEventListener('click', function() {
+document.getElementById('location').scrollIntoView({ behavior: 'smooth' });
+});
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
+navLinks.forEach(link => {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+targetElement.scrollIntoView({ behavior: 'smooth' });
+}
+});
+});
+});
+</script>
+<script id="menu-slider-script">
+document.addEventListener('DOMContentLoaded', function() {
+const slider = document.getElementById('menu-slider');
+const prevBtn = document.getElementById('prev-menu');
+const nextBtn = document.getElementById('next-menu');
+const dots = document.querySelectorAll('.menu-dot');
+let currentSlide = 0;
+const totalSlides = 5;
+let startX = 0;
+let isDragging = false;
+function updateSlider() {
+const screenWidth = window.innerWidth;
+let slideWidth;
+if (screenWidth >= 1024) {
+slideWidth = 33.333;
+} else if (screenWidth >= 768) {
+slideWidth = 50;
+} else {
+slideWidth = 95;
+}
+const translateX = -currentSlide * slideWidth;
+slider.style.transform = `translateX(${translateX}%)`;
+dots.forEach((dot, index) => {
+if (index === currentSlide) {
+dot.classList.add('active');
+dot.classList.remove('bg-gray-300');
+dot.classList.add('bg-primary');
+} else {
+dot.classList.remove('active');
+dot.classList.remove('bg-primary');
+dot.classList.add('bg-gray-300');
+}
+});
+}
+nextBtn.addEventListener('click', function() {
+currentSlide = Math.min(currentSlide + 1, totalSlides - 1);
+updateSlider();
+});
+prevBtn.addEventListener('click', function() {
+currentSlide = Math.max(currentSlide - 1, 0);
+updateSlider();
+});
+dots.forEach((dot, index) => {
+dot.addEventListener('click', function() {
+currentSlide = index;
+updateSlider();
+});
+});
+slider.addEventListener('touchstart', function(e) {
+startX = e.touches[0].clientX;
+isDragging = true;
+});
+slider.addEventListener('touchmove', function(e) {
+if (!isDragging) return;
+e.preventDefault();
+});
+slider.addEventListener('touchend', function(e) {
+if (!isDragging) return;
+isDragging = false;
+const endX = e.changedTouches[0].clientX;
+const diffX = startX - endX;
+if (Math.abs(diffX) > 50) {
+if (diffX > 0 && currentSlide < totalSlides - 1) {
+currentSlide++;
+} else if (diffX < 0 && currentSlide > 0) {
+currentSlide--;
+}
+updateSlider();
+}
+});
+slider.addEventListener('mousedown', function(e) {
+startX = e.clientX;
+isDragging = true;
+e.preventDefault();
+});
+document.addEventListener('mousemove', function(e) {
+if (!isDragging) return;
+e.preventDefault();
+});
+document.addEventListener('mouseup', function(e) {
+if (!isDragging) return;
+isDragging = false;
+const endX = e.clientX;
+const diffX = startX - endX;
+if (Math.abs(diffX) > 50) {
+if (diffX > 0 && currentSlide < totalSlides - 1) {
+currentSlide++;
+} else if (diffX < 0 && currentSlide > 0) {
+currentSlide--;
+}
+updateSlider();
+}
+});
+window.addEventListener('resize', updateSlider);
+updateSlider();
+});
+</script>
+<script id="specials-carousel-script">
+document.addEventListener('DOMContentLoaded', function() {
+const carousel = document.getElementById('specials-carousel');
+const prevBtn = document.getElementById('prev-special');
+const nextBtn = document.getElementById('next-special');
+const dots = document.querySelectorAll('.carousel-dot');
+let currentSlide = 0;
+const totalSlides = 2;
+function updateCarousel() {
+const translateX = -currentSlide * 100;
+carousel.style.transform = `translateX(${translateX}%)`;
+dots.forEach((dot, index) => {
+if (index === currentSlide) {
+dot.classList.add('active');
+dot.classList.remove('bg-gray-300');
+dot.classList.add('bg-primary');
+} else {
+dot.classList.remove('active');
+dot.classList.remove('bg-primary');
+dot.classList.add('bg-gray-300');
+}
+});
+}
+nextBtn.addEventListener('click', function() {
+currentSlide = (currentSlide + 1) % totalSlides;
+updateCarousel();
+});
+prevBtn.addEventListener('click', function() {
+currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+updateCarousel();
+});
+dots.forEach((dot, index) => {
+dot.addEventListener('click', function() {
+currentSlide = index;
+updateCarousel();
+});
+});
+let startX = 0;
+let isDragging = false;
+carousel.addEventListener('touchstart', function(e) {
+startX = e.touches[0].clientX;
+isDragging = true;
+});
+carousel.addEventListener('touchmove', function(e) {
+if (!isDragging) return;
+e.preventDefault();
+});
+carousel.addEventListener('touchend', function(e) {
+if (!isDragging) return;
+isDragging = false;
+const endX = e.changedTouches[0].clientX;
+const diffX = startX - endX;
+if (Math.abs(diffX) > 50) {
+if (diffX > 0) {
+currentSlide = (currentSlide + 1) % totalSlides;
+} else {
+currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+}
+updateCarousel();
+}
+});
+carousel.addEventListener('mousedown', function(e) {
+startX = e.clientX;
+isDragging = true;
+e.preventDefault();
+});
+document.addEventListener('mousemove', function(e) {
+if (!isDragging) return;
+e.preventDefault();
+});
+document.addEventListener('mouseup', function(e) {
+if (!isDragging) return;
+isDragging = false;
+const endX = e.clientX;
+const diffX = startX - endX;
+if (Math.abs(diffX) > 50) {
+if (diffX > 0) {
+currentSlide = (currentSlide + 1) % totalSlides;
+} else {
+currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+}
+updateCarousel();
+}
+});
+});
+</script>
+<script id="modal-script">
+document.addEventListener('DOMContentLoaded', function() {
+const modal = document.getElementById('dish-modal');
+const closeModal = document.getElementById('close-modal');
+const modalImage = document.getElementById('modal-image');
+const modalTitle = document.getElementById('modal-title');
+const modalPrice = document.getElementById('modal-price');
+const modalDescription = document.getElementById('modal-description');
+const modalReserve = document.getElementById('modal-reserve');
+const specialItems = document.querySelectorAll('.special-item');
+specialItems.forEach(item => {
+item.addEventListener('click', function() {
+const name = this.getAttribute('data-name');
+const price = parseInt(this.getAttribute('data-price'));
+const image = this.getAttribute('data-image');
+const description = this.getAttribute('data-description');
+modalTitle.textContent = name;
+modalPrice.textContent = `₩${price.toLocaleString()}`;
+modalImage.src = image;
+modalImage.alt = name;
+modalDescription.textContent = description;
+modalReserve.onclick = function() {
+window.open('tel:02-1234-5678');
+modal.classList.remove('active');
+};
+modal.classList.add('active');
+});
+});
+closeModal.addEventListener('click', function() {
+modal.classList.remove('active');
+});
+modal.addEventListener('click', function(e) {
+if (e.target === modal) {
+modal.classList.remove('active');
+}
+});
+});
+</script>
+<script id="reservation-script">
+document.addEventListener('DOMContentLoaded', function() {
+const reserveBtns = [
+document.getElementById('reserve-btn'),
+document.getElementById('hero-reserve-btn'),
+document.getElementById('location-reserve-btn')
+];
+reserveBtns.forEach(btn => {
+if (btn) {
+btn.addEventListener('click', function() {
+window.open('tel:02-1234-5678');
+});
+}
+});
+const heroMenuBtn = document.querySelector('.border-2.border-white');
+if (heroMenuBtn) {
+heroMenuBtn.addEventListener('click', function() {
+document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+});
+}
+});
+</script>
+</body>
+</html>
