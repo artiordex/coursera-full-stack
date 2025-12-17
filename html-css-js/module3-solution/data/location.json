@@ -1,0 +1,43 @@
+{
+  "storeInfo": {
+    "name": "SW's China Foods",
+    "subTitle": "판교 중국요리 전문점",
+    "status": "OPEN",
+    "statusText": "영업중",
+    "deliveryAvailable": true
+  },
+  "contact": {
+    "address": "경기도 성남시 분당구 판교역로 166",
+    "addressDetail": "알파돔시티 2층",
+    "phone": "02-1234-5678",
+    "mobile": "010-1234-5678",
+    "coordinates": {
+      "lat": 37.394,
+      "lng": 127.111
+    }
+  },
+  "businessHours": [
+    { "day": "월요일 – 목요일", "time": "11:30 – 22:00", "isClosed": false },
+    { "day": "금요일", "time": "11:30 – 14:30", "isClosed": false },
+    { "day": "토요일", "time": null, "isClosed": true },
+    { "day": "일요일", "time": "16:00 – 22:00", "isClosed": false }
+  ],
+  "delivery": {
+    "radius": "3km 이내",
+    "minOrder": 15000,
+    "fee": 2500
+  },
+  "facilities": {
+    "parking": true,
+    "wifi": true
+  },
+  "barrierFree": {
+    "available": true,
+    "features": [
+      "휠체어 출입 가능 (턱 없음)",
+      "장애인 전용 주차구역",
+      "건물 내 엘리베이터 보유",
+      "장애인 화장실 (건물 공용)"
+    ]
+  }
+}
